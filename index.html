@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="zh-CN" data-lang="zh">
+<head>
+  <meta charset="utf-8">
+  <title>QuickLinkHub – Clean & Multilingual Web Directory</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="A privacy-friendly, multilingual web directory for global users. Fast, clean, and AdSense-safe.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+  :root{--primary:#3b82f6;--primary-dark:#2563eb;--bg:#fafbfc;--text:#111827;--radius:12px}body{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans SC",sans-serif;margin:0;background:var(--bg);color:var(--text);line-height:1.6}a{color:var(--primary)}header{position:sticky;top:0;z-index:50;background:#ffffffee;backdrop-filter:blur(6px);border-bottom:1px solid #e5e7eb}.inner{max-width:1100px;margin:auto;padding:0 1rem}#top-bar{display:flex;align-items:center;justify-content:space-between;padding:.75rem 0}#logo{font-weight:600;font-size:1.25rem;color:var(--primary)}#lang-switch{background:0 0;border:1px solid var(--primary);color:var(--primary);padding:.25rem .6rem;border-radius:999px;font-size:.75rem;cursor:pointer}#search-box{width:100%;max-width:420px;padding:.6rem 1rem;border:1px solid #d1d5db;border-radius:999px;outline:0}#search-box:focus{border-color:var(--primary)}nav{display:flex;flex-wrap:wrap;gap:.5rem;padding:.75rem 0}nav button{background:#e0f2fe;color:#0c4a6e;border:0;padding:.4rem .9rem;border-radius:999px;font-size:.8rem;cursor:pointer;transition:background .2s}nav button.active{background:var(--primary);color:#fff}main{padding:1.5rem 0}.sect{margin-bottom:2rem}.sect-title{font-size:1.1rem;font-weight:600;margin-bottom:.75rem}.grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}.card{background:#fff;border:1px solid #e5e7eb;border-radius:var(--radius);padding:1rem;transition:box-shadow .2s;position:relative}.card:hover{box-shadow:0 6px 20px #00000010}card a{text-decoration:none;font-weight:500}.card-url{font-size:.7rem;color:#6b7280;margin-top:.15rem}.card-desc{font-size:.8rem;color:#4b5563;margin-top:.35rem}footer{text-align:center;padding:2rem 0;font-size:.75rem;color:#6b7280}#cookie-banner{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #e5e7eb;padding:1rem;display:flex;align-items:center;justify-content:space-between;z-index:100}#cookie-banner button{background:var(--primary);color:#fff;border:0;padding:.5rem 1rem;border-radius:999px;cursor:pointer}@media(max-width:700px){#top-bar{flex-direction:column;align-items:flex-start}#search-box{max-width:100%}}
+  </style>
+</head>
+<body>
+<header>
+  <div class="inner">
+    <div id="top-bar">
+      <div id="logo">QuickLinkHub</div>
+      <button id="lang-switch" aria-label="Switch to English">English</button>
+    </div>
+    <input id="search-box" placeholder="搜索或输入英文 Search...">
+    <nav aria-label="Category">
+      <button class="cat-btn active" data-cat="all" data-zh="全部" data-en="All">全部</button>
+      <button class="cat-btn" data-cat="social" data-zh="社交媒体" data-en="Social">社交媒体</button>
+      <button class="cat-btn" data-cat="movie" data-zh="影视资源" data-en="Movies">影视</button>
+      <button class="cat-btn" data-cat="mail" data-zh="邮箱" data-en="Email">邮箱</button>
+      <button class="cat-btn" data-cat="search" data-zh="搜索" data-en="Search">搜索</button>
+      <button class="cat-btn" data-cat="ai" data-zh="AI工具" data-en="AI Tools">AI</button>
+      <button class="cat-btn" data-cat="google" data-zh="Google" data-en="Google">Google</button>
+    </nav>
+  </div>
+</header>
+
+<main class="inner">
+  <div id="cards-container"></div>
+</main>
+
+<footer>
+  <div class="inner">
+    <p>&copy; 2025 QuickLinkHub · <a href="privacy.html" class="footer-link">Privacy Policy</a> · <a href="about.html" class="footer-link">About</a> · <a href="contact.html" class="footer-link">Contact</a></p>
+    <p>QuickLinkHub participates in the Google AdSense program. Third parties may use cookies for ad personalisation.</p>
+  </div>
+</footer>
+
+<div id="cookie-banner" style="display:none">
+  <span data-zh="我们使用 Cookie 来改善体验并投放符合你兴趣的广告。" data-en="We use cookies to enhance your experience and deliver personalised ads.">我们使用 Cookie 来改善体验并投放符合你兴趣的广告。</span>
+  <div>
+    <button id="cookie-decline" data-zh="拒绝" data-en="Decline">拒绝</button>
+    <button id="cookie-accept" data-zh="接受" data-en="Accept">接受</button>
+  </div>
+</div>
+
+<script src="cookie.js"></script>
+<script>
+const sites = [
+  {title:'X (Twitter)',url:'https://x.com',cat:'social',desc:'Global real-time social media'},
+  {title:'WeChat',url:'https://www.wechat.com',cat:'social',desc:'Instant messaging & lifestyle platform'},
+  {title:'Telegram',url:'https://telegram.org',cat:'social',desc:'Secure cloud-based messaging'},
+  {title:'YouTube',url:'https://www.youtube.com',cat:'social',desc:'World largest video sharing'},
+  {title:'Gmail',url:'https://mail.google.com',cat:'mail',desc:'Free email by Google'},
+  {title:'Outlook',url:'https://outlook.live.com',cat:'mail',desc:'Microsoft free personal email'},
+  {title:'Google',url:'https://www.google.com',cat:'search',desc:'Most powerful search engine'},
+  {title:'Bing',url:'https://www.bing.com',cat:'search',desc:'Microsoft search engine'},
+  {title:'GitHub',url:'https://github.com',cat:'ai',desc:'Code hosting & collaboration'},
+  {title:'ChatGPT',url:'https://openai.com',cat:'ai',desc:'AI conversation assistant'},
+  {title:'Gemini',url:'https://gemini.google.com',cat:'google',desc:'Google multimodal AI'},
+  {title:'Google Maps',url:'https://maps.google.com',cat:'google',desc:'Accurate global maps & nav'},
+  {title:'Netflix',url:'https://www.netflix.com',cat:'movie',desc:'Subscription streaming service'},
+  {title:'Disney+',url:'https://www.disney.com',cat:'movie',desc:'Disney, Marvel, Star Wars & Pixar'}
+];
+function render(cat='all'){
+  const container = document.getElementById('cards-container');
+  container.innerHTML='';
+  const list = cat==='all'?sites:sites.filter(s=>s.cat===cat);
+  list.forEach(s=>{
+    const card = document.createElement('div');
+    card.className='card';
+    card.innerHTML=`<a href="${s.url}" target="_blank" rel="noopener noreferrer" title="${s.title}"><div class="card-title">${s.title}</div><div class="card-url">${s.url.replace('https://','')}</div><div class="card-desc">${s.desc}</div></a>`;
+    container.appendChild(card);
+  });
+}
+document.querySelectorAll('.cat-btn').forEach(btn=>btn.addEventListener('click',()=>{
+  document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  render(btn.dataset.cat);
+}));
+document.getElementById('search-box').addEventListener('input',e=>{
+  const q=e.target.value.toLowerCase();
+  const filtered = sites.filter(s=>s.title.toLowerCase().includes(q)||s.desc.toLowerCase().includes(q));
+  document.getElementById('cards-container').innerHTML='';
+  filtered.forEach(s=>{
+    const c=document.createElement('div');c.className='card';c.innerHTML=`<a href="${s.url}" target="_blank" rel="noopener noreferrer"><div class="card-title">${s.title}</div><div class="card-url">${s.url.replace('https://','')}</div><div class="card-desc">${s.desc}</div></a>`;document.getElementById('cards-container').appendChild(c);
+  });
+});
+const langBtn = document.getElementById('lang-switch');
+const html = document.documentElement;
+let lang = html.dataset.lang;
+langBtn.addEventListener('click',()=>{
+  lang = lang==='zh'?'en':'zh';
+  html.dataset.lang = lang;
+  html.lang = lang==='zh'?'zh-CN':'en';
+  langBtn.textContent = lang==='zh'?'English':'中文';
+  document.querySelectorAll('[data-zh][data-en]').forEach(el=>el.textContent = el.dataset[lang]);
+  document.querySelectorAll('.cat-btn').forEach(b=>b.textContent = b.dataset[lang]);
+});
+render();
+</script>
+</body>
+</html>
