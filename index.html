@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
-  :root{--primary:#3b82f6;--primary-dark:#2563eb;--bg:#fafbfc;--text:#111827;--radius:12px}body{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans SC",sans-serif;margin:0;background:var(--bg);color:var(--text);line-height:1.6}a{color:var(--primary)}header{position:sticky;top:0;z-index:50;background:#ffffffee;backdrop-filter:blur(6px);border-bottom:1px solid #e5e7eb}.inner{max-width:1100px;margin:auto;padding:0 1rem}#top-bar{display:flex;align-items:center;justify-content:space-between;padding:.75rem 0}#logo{font-weight:600;font-size:1.25rem;color:var(--primary)}#lang-switch{background:0 0;border:1px solid var(--primary);color:var(--primary);padding:.25rem .6rem;border-radius:999px;font-size:.75rem;cursor:pointer}#search-box{width:100%;max-width:420px;padding:.6rem 1rem;border:1px solid #d1d5db;border-radius:999px;outline:0}#search-box:focus{border-color:var(--primary)}nav{display:flex;flex-wrap:wrap;gap:.5rem;padding:.75rem 0}nav button{background:#e0f2fe;color:#0c4a6e;border:0;padding:.4rem .9rem;border-radius:999px;font-size:.8rem;cursor:pointer;transition:background .2s}nav button.active{background:var(--primary);color:#fff}main{padding:1.5rem 0}.sect{margin-bottom:2rem}.sect-title{font-size:1.1rem;font-weight:600;margin-bottom:.75rem}.grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}.card{background:#fff;border:1px solid #e5e7eb;border-radius:var(--radius);padding:1rem;transition:box-shadow .2s;position:relative}.card:hover{box-shadow:0 6px 20px #00000010}card a{text-decoration:none;font-weight:500}.card-url{font-size:.7rem;color:#6b7280;margin-top:.15rem}.card-desc{font-size:.8rem;color:#4b5563;margin-top:.35rem}footer{text-align:center;padding:2rem 0;font-size:.75rem;color:#6b7280}#cookie-banner{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #e5e7eb;padding:1rem;display:flex;align-items:center;justify-content:space-between;z-index:100}#cookie-banner button{background:var(--primary);color:#fff;border:0;padding:.5rem 1rem;border-radius:999px;cursor:pointer}@media(max-width:700px){#top-bar{flex-direction:column;align-items:flex-start}#search-box{max-width:100%}}
+  :root{--primary:#3b82f6;--primary-dark:#2563eb;--bg:#fafbfc;--text:#111827;--radius:12px}body{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans SC",sans-serif;margin:0;background:var(--bg);color:var(--text);line-height:1.6}a{color:var(--primary)}header{position:sticky;top:0;z-index:50;background:#ffffffee;backdrop-filter:blur(6px);border-bottom:1px solid #e5e7eb}.inner{max-width:1100px;margin:auto;padding:0 1rem}#top-bar{display:flex;align-items:center;justify-content:space-between;padding:.75rem 0}#logo{font-weight:600;font-size:1.25rem;color:var(--primary)}#lang-switch{background:0 0;border:1px solid var(--primary);color:var(--primary);padding:.25rem .6rem;border-radius:999px;font-size:.75rem;cursor:pointer}#search-box{width:100%;max-width:420px;padding:.6rem 1rem;border:1px solid #d1d5db;border-radius:999px;outline:0}#search-box:focus{border-color:var(--primary)}nav{display:flex;flex-wrap:wrap;gap:.5rem;padding:.75rem 0}nav button{background:#e0f2fe;color:#0c4a6e;border:0;padding:.4rem .9rem;border-radius:999px;font-size:.8rem;cursor:pointer;transition:background .2s}nav button.active{background:var(--primary);color:#fff}main{padding:1.5rem 0}.sect{margin-bottom:2rem}.sect-title{font-size:1.1rem;font-weight:600;margin-bottom:.75rem}.grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}.card{background:#fff;border:1px solid #e5e7eb;border-radius:var(--radius);padding:1rem;transition:box-shadow .2s,transform .2s;position:relative}.card:hover{box-shadow:0 6px 20px #00000010;transform:translateY(-2px)}card a{text-decoration:none;font-weight:500}.card-url{font-size:.7rem;color:#6b7280;margin-top:.15rem}.card-desc{font-size:.8rem;color:#4b5563;margin-top:.35rem}.ads-card{background:#fff;border:1px dashed #d1d5db;border-radius:var(--radius);padding:1rem;text-align:center;color:#6b7280;display:flex;justify-content:center;align-items:center;min-height:120px}footer{text-align:center;padding:2rem 0;font-size:.75rem;color:#6b7280}#cookie-banner{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #e5e7eb;padding:1rem;display:flex;align-items:center;justify-content:space-between;z-index:100}#cookie-banner button{background:var(--primary);color:#fff;border:0;padding:.5rem 1rem;border-radius:999px;cursor:pointer}@media(max-width:768px){.grid{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}}@media(max-width:700px){#top-bar{flex-direction:column;align-items:flex-start}#search-box{max-width:100%}}
   </style>
 </head>
 <body>
@@ -33,12 +33,12 @@
 </header>
 
 <main class="inner">
-  <div id="cards-container"></div>
+  <div id="cards-container" class="grid"></div>
 </main>
 
 <footer>
   <div class="inner">
-    <p>&copy; 2025 QuickLinkHub · <a href="privacy.html" class="footer-link">Privacy Policy</a> · <a href="about.html" class="footer-link">About</a> · <a href="contact.html" class="footer-link">Contact</a></p>
+    <p>© 2025 QuickLinkHub · <a href="privacy.html" class="footer-link">Privacy Policy</a> · <a href="about.html" class="footer-link">About</a> · <a href="contact.html" class="footer-link">Contact</a></p>
     <p>QuickLinkHub participates in the Google AdSense program. Third parties may use cookies for ad personalisation.</p>
   </div>
 </footer>
@@ -51,48 +51,66 @@
   </div>
 </div>
 
-<script src="cookie.js"></script>
+<script src="data.js" defer></script>
+<script src="cookie.js" defer></script>
 <script>
-const sites = [
-  {title:'X (Twitter)',url:'https://x.com',cat:'social',desc:'Global real-time social media'},
-  {title:'WeChat',url:'https://www.wechat.com',cat:'social',desc:'Instant messaging & lifestyle platform'},
-  {title:'Telegram',url:'https://telegram.org',cat:'social',desc:'Secure cloud-based messaging'},
-  {title:'YouTube',url:'https://www.youtube.com',cat:'social',desc:'World largest video sharing'},
-  {title:'Gmail',url:'https://mail.google.com',cat:'mail',desc:'Free email by Google'},
-  {title:'Outlook',url:'https://outlook.live.com',cat:'mail',desc:'Microsoft free personal email'},
-  {title:'Google',url:'https://www.google.com',cat:'search',desc:'Most powerful search engine'},
-  {title:'Bing',url:'https://www.bing.com',cat:'search',desc:'Microsoft search engine'},
-  {title:'GitHub',url:'https://github.com',cat:'ai',desc:'Code hosting & collaboration'},
-  {title:'ChatGPT',url:'https://openai.com',cat:'ai',desc:'AI conversation assistant'},
-  {title:'Gemini',url:'https://gemini.google.com',cat:'google',desc:'Google multimodal AI'},
-  {title:'Google Maps',url:'https://maps.google.com',cat:'google',desc:'Accurate global maps & nav'},
-  {title:'Netflix',url:'https://www.netflix.com',cat:'movie',desc:'Subscription streaming service'},
-  {title:'Disney+',url:'https://www.disney.com',cat:'movie',desc:'Disney, Marvel, Star Wars & Pixar'}
-];
 function render(cat='all'){
   const container = document.getElementById('cards-container');
   container.innerHTML='';
-  const list = cat==='all'?sites:sites.filter(s=>s.cat===cat);
-  list.forEach(s=>{
+  
+  // 在这里放置您的 AdSense 广告代码
+  // 例如：<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234567890123456" crossorigin="anonymous"></script>
+  // <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1234567890123456" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  // <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  // 为了演示，我将添加一个占位符。
+  const adCard = document.createElement('div');
+  adCard.className = 'card ads-card';
+  adCard.innerHTML = '<div>广告位 - 请替换为您的 AdSense 代码</div>';
+  
+  let list = [];
+  if (cat === 'all') {
+    list = sites;
+  } else {
+    list = sites.filter(s => s.cat === cat);
+  }
+
+  // 战略性地在第三个和第六个位置插入广告
+  for (let i = 0; i < list.length; i++) {
+    const s = list[i];
     const card = document.createElement('div');
     card.className='card';
     card.innerHTML=`<a href="${s.url}" target="_blank" rel="noopener noreferrer" title="${s.title}"><div class="card-title">${s.title}</div><div class="card-url">${s.url.replace('https://','')}</div><div class="card-desc">${s.desc}</div></a>`;
     container.appendChild(card);
-  });
+    
+    // 每隔3个链接卡片插入一个广告位
+    if ( (i + 1) % 3 === 0 && (i + 1) < list.length) {
+      const adPlaceholder = document.createElement('div');
+      adPlaceholder.className = 'card ads-card';
+      adPlaceholder.innerHTML = '<div>广告位 - 请替换为您的 AdSense 代码</div>';
+      container.appendChild(adPlaceholder);
+    }
+  }
 }
+
+// 搜索功能的改进
+document.getElementById('search-box').addEventListener('input', e => {
+  const q = e.target.value.toLowerCase();
+  const filtered = sites.filter(s => s.title.toLowerCase().includes(q) || s.desc.toLowerCase().includes(q));
+  const container = document.getElementById('cards-container');
+  container.innerHTML = '';
+  filtered.forEach(s => {
+    const c = document.createElement('div');
+    c.className = 'card';
+    c.innerHTML = `<a href="${s.url}" target="_blank" rel="noopener noreferrer"><div class="card-title">${s.title}</div><div class="card-url">${s.url.replace('https://','')}</div><div class="card-desc">${s.desc}</div></a>`;
+    container.appendChild(c);
+  });
+});
+
 document.querySelectorAll('.cat-btn').forEach(btn=>btn.addEventListener('click',()=>{
   document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
   render(btn.dataset.cat);
 }));
-document.getElementById('search-box').addEventListener('input',e=>{
-  const q=e.target.value.toLowerCase();
-  const filtered = sites.filter(s=>s.title.toLowerCase().includes(q)||s.desc.toLowerCase().includes(q));
-  document.getElementById('cards-container').innerHTML='';
-  filtered.forEach(s=>{
-    const c=document.createElement('div');c.className='card';c.innerHTML=`<a href="${s.url}" target="_blank" rel="noopener noreferrer"><div class="card-title">${s.title}</div><div class="card-url">${s.url.replace('https://','')}</div><div class="card-desc">${s.desc}</div></a>`;document.getElementById('cards-container').appendChild(c);
-  });
-});
 const langBtn = document.getElementById('lang-switch');
 const html = document.documentElement;
 let lang = html.dataset.lang;
