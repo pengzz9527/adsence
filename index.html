@@ -2,77 +2,114 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>我的网址导航</title>
+  <title>网站导航</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
-    body{font-family:Arial,Helvetica,sans-serif;background:#f9fafb;margin:0;padding:0}
-    header{background:#2563eb;color:white;padding:1rem;text-align:center}
-    .container{max-width:1200px;margin:0 auto;padding:1rem}
+    body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background:#f4f6fa;color:#111827}
+    header{background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.1);padding:1rem;text-align:center;position:sticky;top:0;z-index:1000}
+    header h1{margin:0;font-size:1.5rem;color:#2563eb}
     .search-box{margin:1rem auto;text-align:center}
-    .search-box input{padding:.5rem;width:80%;max-width:400px;border:1px solid #ccc;border-radius:6px}
-    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1rem}
-    .card{background:white;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.1);padding:1rem;transition:.2s}
-    .card:hover{box-shadow:0 4px 6px rgba(0,0,0,.15)}
-    .card-title{font-size:.9rem;font-weight:600;margin-bottom:.25rem;color:#111827}
-    .card-desc{font-size:.8rem;color:#6b7280}
-    .card a{display:inline-block;margin-top:.25rem;color:#2563eb;text-decoration:none;font-weight:500}
+    .search-box input{padding:.6rem;width:80%;max-width:500px;border:1px solid #ccc;border-radius:999px;outline:none}
+    .categories{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin:1rem auto}
+    .categories button{padding:.5rem 1rem;border:none;border-radius:999px;background:#e5e7eb;color:#374151;cursor:pointer;transition:.2s}
+    .categories button.active{background:#2563eb;color:white}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1rem;padding:1rem}
+    .card{background:white;border-radius:12px;box-shadow:0 2px 6px rgba(0,0,0,.1);padding:1rem;transition:.2s;display:flex;flex-direction:column;justify-content:space-between}
+    .card:hover{transform:translateY(-2px);box-shadow:0 4px 10px rgba(0,0,0,.15)}
+    .card-top{display:flex;align-items:center;gap:.75rem;margin-bottom:.5rem}
+    .card-icon{width:32px;height:32px;flex-shrink:0}
+    .card-title{font-size:1rem;font-weight:600;color:#111827}
+    .card-domain{font-size:.8rem;color:#6b7280}
+    .card-desc{font-size:.85rem;color:#374151;margin-top:.25rem;flex-grow:1}
+    .card a{margin-top:.5rem;color:#2563eb;font-weight:500;text-decoration:none}
     .card a:hover{text-decoration:underline}
   </style>
 </head>
 <body>
   <header>
-    <h1>我的网址导航</h1>
-    <p>快速访问常用网站 (Quick Access)</p>
-  </header>
-
-  <div class="container">
+    <h1>🌐 网站导航</h1>
     <div class="search-box">
       <input type="text" id="search" placeholder="搜索网站... (Search sites)">
     </div>
+    <div class="categories" id="categories"></div>
+  </header>
+
+  <main>
     <div id="site-grid" class="grid"></div>
-  </div>
+  </main>
+
+  <!-- Google AdSense 示例广告位（通过审核时可开启） -->
+  <!--
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-1234567890123456"
+       data-ad-slot="1234567890"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  -->
 
   <script src="data.js"></script>
   <script>
     const grid = document.getElementById("site-grid");
     const searchBox = document.getElementById("search");
+    const categoriesBox = document.getElementById("categories");
 
-    // 渲染函数 (Render function)
-    function render(list){
+    let currentCategory = "all";
+
+    // 获取分类
+    const categories = ["all", ...new Set(sites.map(s=>s.cat))];
+
+    // 渲染分类按钮
+    function renderCategories(){
+      categoriesBox.innerHTML = "";
+      categories.forEach(cat=>{
+        const btn = document.createElement("button");
+        btn.textContent = cat==="all"?"全部":cat;
+        if(cat===currentCategory) btn.classList.add("active");
+        btn.addEventListener("click",()=>{
+          currentCategory=cat;
+          renderCategories();
+          renderSites();
+        });
+        categoriesBox.appendChild(btn);
+      });
+    }
+
+    // 渲染网站卡片
+    function renderSites(){
       grid.innerHTML = "";
-      list.forEach(site=>{
+      const q = searchBox.value.toLowerCase();
+      let filtered = sites.filter(site =>
+        (currentCategory==="all" || site.cat===currentCategory) &&
+        (site.title.toLowerCase().includes(q) || site.desc.toLowerCase().includes(q))
+      );
+
+      filtered.forEach(site=>{
         const card = document.createElement("div");
-        card.className = "card";
-        card.innerHTML = `
-          <div class="card-title">${site.title}</div>
+        card.className="card";
+        card.innerHTML=`
+          <div class="card-top">
+            <img src="${site.icon}" alt="${site.title}" class="card-icon">
+            <div>
+              <div class="card-title">${site.title}</div>
+              <div class="card-domain">${site.url.replace("https://","").replace("http://","")}</div>
+            </div>
+          </div>
           <div class="card-desc">${site.desc}</div>
           <a href="${site.url}" target="_blank">访问 (Visit)</a>
         `;
         grid.appendChild(card);
       });
-
-      // 插入广告位 (Ad placeholder, optional)
-      /*
-      const adCard = document.createElement("div");
-      adCard.className = "card";
-      adCard.innerHTML = '<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1234567890123456" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>';
-      grid.appendChild(adCard);
-      (adsbygoogle = window.adsbygoogle || []).push({});
-      */
     }
 
-    // 初始渲染
-    render(sites);
+    // 初始化
+    renderCategories();
+    renderSites();
 
-    // 搜索功能 (Search filter)
-    searchBox.addEventListener("input", ()=>{
-      const q = searchBox.value.toLowerCase();
-      const filtered = sites.filter(site =>
-        site.title.toLowerCase().includes(q) || site.desc.toLowerCase().includes(q)
-      );
-      render(filtered);
-    });
+    searchBox.addEventListener("input",renderSites);
   </script>
 </body>
 </html>
